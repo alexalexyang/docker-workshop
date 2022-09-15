@@ -6,5 +6,5 @@
 
 curl -X POST \
 -H "Content-type: application/json" \
--d '{"maybe": "tomorrow"}' \
+-d '{"maybe21": "tomorrow"}' \
 http://localhost:8000

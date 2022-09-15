@@ -10,13 +10,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const filepath = `${__dirname}/data.json`
+const __dirname = path.resolve(path.dirname(__filename), "../");
+const filepath = `${__dirname}/data/data.json`
 
 app.post(
     '/',
     (req, res) => {
         const body = req.body
+
+        console.log({ filepath })
         const fixture = fs.readFileSync(filepath, 'utf8')
         const parsed = JSON.parse(fixture)
 
