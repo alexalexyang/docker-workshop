@@ -1,0 +1,29 @@
+version: "1.0"
+
+services:
+  web:
+    build:
+      context: ../
+      dockerfile: ./setup/web.Dockerfile
+    container_name: docker-workshop_web
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8000:3000"
+    volumes:
+      - ../temp:/app/data
+
+  db:
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    container_name: docker-workshop_db
+    expose:
+      - "5432"
+    ports:
+      - "5000:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${PG_PW}
